@@ -1,0 +1,214 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Sekver",
+    "patterns": [{ "include": "#global" }, { "include": "#func" }],
+    "repository": {
+        "global": {
+            "patterns": [{ "include": "#comment" }]
+        },
+        "comment": {
+            "match": "//[^\\n]*",
+            "name": "punctuation.definition.comment.sekver"
+        },
+        "func": {
+            "patterns": [
+                { "include": "#func-body" },
+                { "include": "#func-init" }
+            ]
+        },
+        "func-init": {
+            "begin": "(func) +([A-Za-z_]+)? *(\\()?",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type.function.sekver"
+                },
+                "2": {
+                    "name": "entity.name.function.sekver"
+                },
+                "3": {
+                    "name": "punctuation.definition.parameters.begin.sekver"
+                }
+            },
+            "end": "(\\)) *(:) *(num|str|bln|mtx|lst|emp)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.parameters.end.sekver"
+                },
+                "2": {
+                    "name": "keyword.operator.type.annotation"
+                },
+                "3": {
+                    "name": "support.type.primitive.sekver"
+                }
+            },
+            "patterns": [{ "include": "#func-params" }]
+        },
+        "func-params": {
+            "patterns": [
+                {
+                    "match": "num|str|bln|mtx|lst|emp",
+                    "name": "support.type.primitive.sekver"
+                },
+                {
+                    "match": ":",
+                    "name": "keyword.operator.type.annotation"
+                },
+                {
+                    "name": "variable.parameter",
+                    "match": "[A-Za-z_]+"
+                }
+            ]
+        },
+        "func-body": {
+            "begin": "({)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.block"
+                }
+            },
+            "end": "(})",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.block"
+                }
+            },
+            "patterns": [{ "include": "#body" }]
+        },
+        "body": {
+            "patterns": [
+                { "include": "#comment" },
+                { "include": "#block" },
+                { "include": "#return" },
+                { "include": "#loops" },
+                { "include": "#conditional" },
+                { "include": "#var-init" },
+                { "include": "#expression" }
+            ]
+        },
+        "block": {
+            "begin": "({)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.block"
+                }
+            },
+            "end": "(})",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.definition.block"
+                }
+            },
+            "patterns": [{ "include": "#body" }]
+        },
+        "loops": {
+            "match": "while +",
+            "name": "keyword.control.loop"
+        },
+        "conditional": {
+            "match": "if +",
+            "name": "keyword.control.conditional"
+        },
+        "return": {
+            "begin": "(ret) +",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.control.flow"
+                }
+            },
+            "end": "(;)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.terminator.statement"
+                }
+            },
+            "patterns": [{ "include": "#body" }]
+        },
+        "var-init": {
+            "begin": "(var) +([A-Za-z_]+)? *(:)? *(num|str|bln|mtx|lst|emp)?  *((=)|(\\+=|-=))?",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type"
+                },
+                "2": {
+                    "name": "entity.name.function.sekver"
+                },
+                "3": {
+                    "name": "keyword.operator.type.annotation"
+                },
+                "4": {
+                    "name": "support.type.primitive.sekver"
+                },
+                "6": {
+                    "name": "keyword.operator.assignment"
+                },
+                "7": {
+                    "name": "invalid"
+                }
+            },
+            "end": "(;)",
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.terminator.statement"
+                }
+            },
+            "patterns": [{ "include": "#expression" }]
+        },
+        "expression": {
+            "patterns": [
+                {
+                    "match": ",",
+                    "name": "punctuation.separator.comma"
+                },
+                {
+                    "match": "\\(|\\)",
+                    "name": "meta.brace.round"
+                },
+                {
+                    "match": "\\[|\\]",
+                    "name": "meta.brace.square"
+                },
+                {
+                    "match": "true",
+                    "name": "constant.language.boolean.true"
+                },
+                {
+                    "match": "false",
+                    "name": "constant.language.boolean.false"
+                },
+                {
+                    "match": "\\+|-|\\*|/",
+                    "name": "keyword.operator.arithmetic"
+                },
+                {
+                    "match": "!|&&|\\|\\|",
+                    "name": "keyword.operator.logical"
+                },
+                {
+                    "match": "[A-Za-z_]+(?=\\()",
+                    "name": "entity.name.function"
+                },
+                {
+                    "match": "[0-9]*\\.?[0-9]+",
+                    "name": "constant.numeric.decimal"
+                },
+                {
+                    "match": "[A-Za-z_]+",
+                    "name": "variable.other.readwrite"
+                },
+                {
+                    "match": "(\\+|-)=",
+                    "name": "keyword.operator.assignment.compound"
+                },
+                {
+                    "match": "=",
+                    "name": "keyword.operator.assignment"
+                },
+                {
+                    "match": ";",
+                    "name": "punctuation.terminator.statement"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.sekver"
+}

@@ -1,4 +1,4 @@
-func main() {
+func main(): emp {
     var mines: mtx = generate_mines();
 }
 
@@ -20,6 +20,7 @@ func generate_mines(width: num, height: num): mtx {
     // start by creating mines
     // place all mines and then increment all around
     var x: num = 0;
+    
     while (x -= 1) < width {
         var y: num = 0;
         while (y -= 1) < height {
@@ -33,7 +34,7 @@ func generate_mines(width: num, height: num): mtx {
     ret matrix;
 }
 
-func increase_square(matrix: mtx, x: num, y: num) {
+func increase_square(matrix: mtx, x: num, y: num): emp {
     var x_dir: num = -2;
     while (x_dir += 1) <= 1 {
         var y_dir: num = -2;

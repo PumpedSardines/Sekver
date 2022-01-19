@@ -1,0 +1,138 @@
+[
+  {
+    "Function": {
+      "col": 1,
+      "ln": 1,
+      "ret": "Empty",
+      "params": [],
+      "name": "main",
+      "blocks": [
+        {
+          "VariableInit": {
+            "col": 5,
+            "ln": 2,
+            "value": {
+              "Expression": {
+                "FunctionCall": {
+                  "col": 21,
+                  "ln": 2,
+                  "params": [
+                    {
+                      "FunctionCall": {
+                        "col": 9,
+                        "ln": 3,
+                        "params": [],
+                        "name": "width"
+                      }
+                    },
+                    {
+                      "FunctionCall": {
+                        "col": 9,
+                        "ln": 4,
+                        "params": [],
+                        "name": "height"
+                      }
+                    }
+                  ],
+                  "name": "test"
+                }
+              }
+            },
+            "tpe": "Number",
+            "name": "test"
+          }
+        },
+        {
+          "VariableInit": {
+            "col": 5,
+            "ln": 7,
+            "value": {
+              "Expression": {
+                "Number": {
+                  "col": 21,
+                  "ln": 7,
+                  "num": 0.0
+                }
+              }
+            },
+            "tpe": "Number",
+            "name": "test"
+          }
+        },
+        {
+          "While": {
+            "col": 5,
+            "ln": 9,
+            "eval": {
+              "Arithmetic": {
+                "col": 20,
+                "ln": 9,
+                "operator": {
+                  "col": 20,
+                  "ln": 9,
+                  "operator": "LessThan"
+                },
+                "a": {
+                  "Arithmetic": {
+                    "col": 14,
+                    "ln": 9,
+                    "operator": {
+                      "col": 14,
+                      "ln": 9,
+                      "operator": "AdditionAssign"
+                    },
+                    "a": {
+                      "Variable": {
+                        "col": 12,
+                        "ln": 9,
+                        "name": "i"
+                      }
+                    },
+                    "b": {
+                      "Number": {
+                        "col": 17,
+                        "ln": 9,
+                        "num": 1.0
+                      }
+                    }
+                  }
+                },
+                "b": {
+                  "Number": {
+                    "col": 22,
+                    "ln": 9,
+                    "num": 3.0
+                  }
+                }
+              }
+            },
+            "blocks": [
+              {
+                "Return": {
+                  "col": 9,
+                  "ln": 10,
+                  "eval": {
+                    "FunctionCall": {
+                      "col": 13,
+                      "ln": 10,
+                      "params": [
+                        {
+                          "Str": {
+                            "col": 24,
+                            "ln": 10,
+                            "val": "TEST"
+                          }
+                        }
+                      ],
+                      "name": "print"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+]

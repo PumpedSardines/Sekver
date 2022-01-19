@@ -46,6 +46,22 @@ pub struct FunctionCall {
     pub name: String,
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct MatrixCall {
+    pub col: usize,
+    pub ln: usize,
+    pub params: Box<(Expression, Expression)>,
+    pub name: String,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct ListCall {
+    pub col: usize,
+    pub ln: usize,
+    pub params: Box<Expression>,
+    pub name: String,
+}
+
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum ArithmeticOperators {
     Assign,
@@ -120,6 +136,8 @@ pub enum Expression {
     Negate(Negate),
     Variable(Variable),
     FunctionCall(FunctionCall),
+    MatrixCall(MatrixCall),
+    ListCall(ListCall),
     Arithmetic(Arithmetic),
 }
 

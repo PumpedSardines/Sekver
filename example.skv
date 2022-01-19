@@ -1,11 +1,52 @@
 func main() {
-    var test: num = 0;
-
-    while (i += 1) < 3 {
-        ret print("TEST");
-    }
+    var mines: mtx = generate_mines();
 }
 
-mixn test() {
+func generate_mines(width: num, height: num): mtx {
+    var mines: mtx = [width, height];
+    var num_of_mines: num = 22;
 
+    // Place all mines randomly on the grid
+    while num_of_mines > 0 {
+        var x: num = rand_int(0, width);
+        var y: num = rand_int(0, height);
+
+        if mines[x, y] != 9 {
+            num_of_mines -= 1;
+            mines[x, y] = 9;
+        }
+    }
+
+    // start by creating mines
+    // place all mines and then increment all around
+    var x: num = 0;
+    while (x -= 1) < width {
+        var y: num = 0;
+        while (y -= 1) < height {
+            if mines[x, y] == 9 {
+                // We're in a mine, increase everything outside with 1
+                increase_square(matrix, x, y);
+            }
+        }  
+    } 
+
+    ret matrix;
+}
+
+func increase_square(matrix: mtx, x: num, y: num) {
+    var x_dir: num = -2;
+    while (x_dir += 1) <= 1 {
+        var y_dir: num = -2;
+        while (y += 1) <= 1 {
+            if !(
+                (x_dir == 0 && y_dir == 0)
+                || x_dir + x < 0
+                || x_dir + x >= width
+                || y_dir + y < 0
+                || y_dir + y >= height
+            ) {
+                mines[x + x_dir, y + y_dir] += 1;   
+            }
+        }  
+    } 
 }

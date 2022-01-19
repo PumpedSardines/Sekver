@@ -126,6 +126,12 @@ pub fn eval(tokens: &[Token]) -> Result<Vec<Block>, ParsingError> {
                 continue 'main;
             }
         }
+
+        return Err(ParsingError{
+            col: token.col,
+            ln: token.ln,
+            reason: "Can't find ending semicolon"
+        });
     }
 
     return Ok(blocks);

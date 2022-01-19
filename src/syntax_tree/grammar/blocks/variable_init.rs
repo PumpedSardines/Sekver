@@ -36,8 +36,14 @@ pub fn eval(tokens: &[Token]) -> Result<Block, ParsingError> {
         tpe,
         name: String::from(tokens[1].raw.as_ref().unwrap()),
         value: match tpe {
-            Types::Matrix => matrix_init_eval(set_tokens)?,
-            Types::List => list_init_eval(set_tokens)?,
+            Types::Matrix => match matrix_init_eval(set_tokens) {
+                Ok(v) => v,
+                Err(_) => VariableInitValues::Expression(expression::eval(set_tokens)?)
+            },
+            Types::List => match list_init_eval(set_tokens) {
+                Ok(v) => v,
+                Err(_) => VariableInitValues::Expression(expression::eval(set_tokens)?)
+            },
             _ => VariableInitValues::Expression(expression::eval(set_tokens)?),
         },
     }));

@@ -20,46 +20,93 @@ pub fn eval(tokens: &[Token]) -> Result<Expression, ParsingError> {
     }
 
     let mut combo_blocks: Vec<InterExpr> = Vec::new();
-    let mut parenthese_count = 0;
-    let mut paranthese_start = 0;
-    let mut eval_paranthese = false;
-    let mut paranthase_func = false;
+    let mut p_count = 0;
+    let mut p_start = 0;
+    let mut p_func = false;
+    let mut p_eval = false;
+
+    let mut b_count = 0;
+    let mut b_start = 0;
+    let mut b_eval = false;
 
     // First loop trough all and evaluate function calls and parentheses
+
     for i in 0..tokens.len() {
         let token = &tokens[i];
 
+        // Check if this keyword is for a function or list/matrix
+        // Skip it, because it will be evaluated to a variable
         if token.key == TokenKey::Keyword
             && i != tokens.len() - 1
-            && tokens[i + 1].key == TokenKey::ParentheseLeft
+            && (tokens[i + 1].key == TokenKey::ParentheseLeft
+                || tokens[i + 1].key == TokenKey::BracketLeft)
         {
             continue;
         }
 
-        if token.key == TokenKey::ParentheseLeft {
-            if !eval_paranthese {
-                eval_paranthese = true;
-                paranthese_start = i;
-                if i != 0 && tokens[i - 1].key == TokenKey::Keyword {
-                    paranthase_func = true;
+        // Bracket eval
+        if token.key == TokenKey::BracketLeft && !p_eval {
+            if !p_eval && !b_eval {
+                b_eval = true;
+                b_start = i;
+                if i == 0 || tokens[i - 1].key != TokenKey::Keyword {
+                    return Err(ParsingError {
+                        col: token.col,
+                        ln: token.ln,
+                        reason: "Unknown keyword",
+                    });
                 }
             }
-            parenthese_count += 1;
+            b_count += 1;
             continue;
         }
 
-        if token.key == TokenKey::ParentheseRight {
-            if eval_paranthese == false {
+        if token.key == TokenKey::BracketRight && !p_eval {
+            if !b_eval && !p_eval {
                 return Err(ParsingError::from(token, "Unrecognized token"));
             }
-            parenthese_count -= 1;
+            b_count -= 1;
 
-            if parenthese_count == 0 {
+            if b_count == 0 {
+                let b_end = i;
+                let in_peranthese = &tokens[(b_start + 1)..(b_end)];
+
+                let func_tok = &tokens[b_start - 1];
+
+                combo_blocks.push(InterExpr::Expression(eval_bracket_call(
+                    func_tok,
+                    in_peranthese,
+                )?));
+                b_eval = false;
+            }
+            continue;
+        }
+
+        // Parentheses evaluation
+        if token.key == TokenKey::ParentheseLeft && !b_eval {
+            if !p_eval {
+                p_eval = true;
+                p_start = i;
+                if i != 0 && tokens[i - 1].key == TokenKey::Keyword {
+                    p_func = true;
+                }
+            }
+            p_count += 1;
+            continue;
+        }
+
+        if token.key == TokenKey::ParentheseRight && !b_eval {
+            if !p_eval {
+                return Err(ParsingError::from(token, "Unrecognized token"));
+            }
+            p_count -= 1;
+
+            if p_count == 0 {
                 let paranthese_end = i;
-                let in_peranthese = &tokens[(paranthese_start + 1)..(paranthese_end)];
+                let in_peranthese = &tokens[(p_start + 1)..(paranthese_end)];
 
-                if paranthase_func {
-                    let func_tok = &tokens[paranthese_start - 1];
+                if p_func {
+                    let func_tok = &tokens[p_start - 1];
                     combo_blocks.push(InterExpr::Expression(Expression::FunctionCall(
                         FunctionCall {
                             ln: func_tok.ln,
@@ -72,12 +119,12 @@ pub fn eval(tokens: &[Token]) -> Result<Expression, ParsingError> {
                     combo_blocks.push(InterExpr::Expression(eval(in_peranthese)?));
                 }
 
-                eval_paranthese = false;
+                p_eval = false;
             }
             continue;
         }
 
-        if !eval_paranthese {
+        if !p_eval && !b_eval {
             combo_blocks.push(eval_unknown_token(&token)?);
         }
     }
@@ -251,6 +298,51 @@ fn eval_combo_blocks(tokens: &[InterExpr]) -> Result<Expression, ParsingError> {
         col: 0,
         reason: "any",
     });
+}
+
+fn eval_bracket_call(i_token: &Token, tokens: &[Token]) -> Result<Expression, ParsingError> {
+    let mut p_count = 0;
+    let mut b_count = 0;
+    // Ignore first and last
+
+    for i in 0..tokens.len() {
+        let token = &tokens[i];
+
+        if token.key == TokenKey::Comma && p_count == 0 && b_count == 0 {
+            return Ok(Expression::MatrixCall(MatrixCall {
+                col: tokens[0].col,
+                ln: tokens[0].ln,
+                params: Box::new((
+                    expression::eval(&tokens[0..i])?,
+                    expression::eval(&tokens[(i + 1)..tokens.len()])?,
+                )),
+                name: i_token.raw.as_ref().unwrap().clone(),
+            }));
+        }
+
+        match token.key {
+            TokenKey::BracketLeft => b_count += 1,
+            TokenKey::BracketRight => b_count -= 1,
+            TokenKey::ParentheseLeft => p_count += 1,
+            TokenKey::ParentheseRight => p_count -= 1,
+            _ => (),
+        }
+
+        if p_count < 0 || b_count < 0 {
+            return Err(ParsingError {
+                ln: tokens[0].ln,
+                col: tokens[0].col,
+                reason: "Unexpected token",
+            });
+        }
+    }
+
+    return Ok(Expression::ListCall(ListCall {
+        col: tokens[0].col,
+        ln: tokens[0].ln,
+        params: Box::new(expression::eval(&tokens[0..tokens.len()])?),
+        name: i_token.raw.as_ref().unwrap().clone(),
+    }));
 }
 
 fn eval_func_args(tokens: &[Token]) -> Result<Vec<Expression>, ParsingError> {

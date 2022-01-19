@@ -7,7 +7,7 @@ This language should not be used for anything serious. It's a hobby project to l
 
 ## Example code
 ```
-func main {
+func main(): emp {
     var my_variable: str = "Hello World";
     var i: num = 0;
 
@@ -15,5 +15,11 @@ func main {
         print_line(my_variable);
         i += 1;
     }
+}
+
+func is_prime(val: num): bln {
+
+    var a: num = 0;
+
 }
 ```

@@ -28,6 +28,7 @@ pub enum TokenKey {
     Multiplication,
     Division,
     Assign,
+    Power,
     AdditionAssign,
     SubtractAssign,
     Equals,

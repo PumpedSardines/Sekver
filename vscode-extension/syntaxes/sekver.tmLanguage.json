@@ -29,7 +29,7 @@
                     "name": "punctuation.definition.parameters.begin.sekver"
                 }
             },
-            "end": "(\\)) *(:) *(num|str|bln|mtx|lst|emp)",
+            "end": "(\\)) *(:)? *(num|str|bln|mtx|lst|emp)?",
             "endCaptures": {
                 "1": {
                     "name": "punctuation.definition.parameters.end.sekver"
@@ -109,22 +109,37 @@
             "name": "keyword.control.conditional"
         },
         "return": {
-            "begin": "(ret) +",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.control.flow"
+            "patterns": [
+                {
+                    "match": "(ret) *(;)",
+                    "captures": {
+                        "1": {
+                            "name":"keyword.control.flow"
+                        },
+                        "2": {
+                            "name":"punctuation.terminator.statement"
+                        }
+                    }
+                },
+                {
+                    "begin": "(ret) +",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.flow"
+                        }
+                    },
+                    "end": "(;)",
+                    "endCaptures": {
+                        "1": {
+                            "name": "punctuation.terminator.statement"
+                        }
+                    },
+                    "patterns": [{ "include": "#body" }]
                 }
-            },
-            "end": "(;)",
-            "endCaptures": {
-                "1": {
-                    "name": "punctuation.terminator.statement"
-                }
-            },
-            "patterns": [{ "include": "#body" }]
+            ]
         },
         "var-init": {
-            "begin": "(var) +([A-Za-z_]+)? *(:)? *(num|str|bln|mtx|lst|emp)?  *((=)|(\\+=|-=))?",
+            "begin": "(var) +([A-Za-z_]+)? *(:)? *(num|str|bln|mtx|lst|emp)? *((=)|(\\+=|-=))?",
             "beginCaptures": {
                 "1": {
                     "name": "storage.type"
@@ -156,6 +171,30 @@
         "expression": {
             "patterns": [
                 {
+                    "begin": "\"",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin"
+                        }
+                    },
+                    "end": "(?<!\\\\)\"",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.end"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "match": "\\\\.",
+                            "name": "constant.character.escape"
+                        },
+                        {
+                            "match": ".",
+                            "name": "string.quoted.double"
+                        }
+                    ]
+                },
+                {
                     "match": ",",
                     "name": "punctuation.separator.comma"
                 },
@@ -178,6 +217,14 @@
                 {
                     "match": "\\+|-|\\*|/",
                     "name": "keyword.operator.arithmetic"
+                },
+                {
+                    "match": ">=|<=|>|<",
+                    "name": "keyword.operator.relational"
+                },
+                {
+                    "match": "==|!=",
+                    "name": "keyword.operator.comparison"
                 },
                 {
                     "match": "!|&&|\\|\\|",

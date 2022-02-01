@@ -4,22 +4,16 @@
   "description": "Language support for Sekver",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.63.0"
+    "vscode": "^1.61.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:sekver.helloWorld"
+    "onLanguage:sekver"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "sekver.helloWorld",
-        "title": "Hello World"
-      }
-    ],
     "languages": [
       {
         "id": "sekver",

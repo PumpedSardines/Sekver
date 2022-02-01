@@ -72,6 +72,7 @@ pub enum ArithmeticOperators {
     Multiplication,
     Division,
     Equals,
+    Power,
     NotEquals,
     GreaterThan,
     Not,

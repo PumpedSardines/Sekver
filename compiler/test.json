@@ -24,6 +24,38 @@
             "tpe": "Matrix",
             "name": "mines"
           }
+        },
+        {
+          "Expression": {
+            "FunctionCall": {
+              "col": 5,
+              "ln": 4,
+              "params": [
+                {
+                  "Str": {
+                    "col": 22,
+                    "ln": 4,
+                    "val": "Hello"
+                  }
+                },
+                {
+                  "Number": {
+                    "col": 25,
+                    "ln": 4,
+                    "num": 2.0
+                  }
+                },
+                {
+                  "Number": {
+                    "col": 28,
+                    "ln": 4,
+                    "num": 3.0
+                  }
+                }
+              ],
+              "name": "std_output"
+            }
+          }
         }
       ]
     }
@@ -31,7 +63,7 @@
   {
     "Function": {
       "col": 1,
-      "ln": 5,
+      "ln": 7,
       "ret": "Empty",
       "params": [],
       "name": "generate_mines",
@@ -39,22 +71,22 @@
         {
           "VariableInit": {
             "col": 5,
-            "ln": 6,
+            "ln": 8,
             "value": {
               "MatrixInit": {
                 "col": 22,
-                "ln": 6,
+                "ln": 8,
                 "width": {
                   "Variable": {
                     "col": 23,
-                    "ln": 6,
+                    "ln": 8,
                     "name": "width"
                   }
                 },
                 "height": {
                   "Variable": {
                     "col": 30,
-                    "ln": 6,
+                    "ln": 8,
                     "name": "height"
                   }
                 }
@@ -67,12 +99,12 @@
         {
           "VariableInit": {
             "col": 5,
-            "ln": 7,
+            "ln": 9,
             "value": {
               "Expression": {
                 "Number": {
                   "col": 29,
-                  "ln": 7,
+                  "ln": 9,
                   "num": 22.0
                 }
               }
@@ -84,27 +116,27 @@
         {
           "While": {
             "col": 5,
-            "ln": 10,
+            "ln": 12,
             "eval": {
               "Arithmetic": {
                 "col": 24,
-                "ln": 10,
+                "ln": 12,
                 "operator": {
                   "col": 24,
-                  "ln": 10,
+                  "ln": 12,
                   "operator": "GreaterThan"
                 },
                 "a": {
                   "Variable": {
                     "col": 11,
-                    "ln": 10,
+                    "ln": 12,
                     "name": "num_of_mines"
                   }
                 },
                 "b": {
                   "Number": {
                     "col": 26,
-                    "ln": 10,
+                    "ln": 12,
                     "num": 0.0
                   }
                 }
@@ -114,24 +146,24 @@
               {
                 "VariableInit": {
                   "col": 9,
-                  "ln": 11,
+                  "ln": 13,
                   "value": {
                     "Expression": {
                       "FunctionCall": {
                         "col": 22,
-                        "ln": 11,
+                        "ln": 13,
                         "params": [
                           {
                             "Number": {
                               "col": 31,
-                              "ln": 11,
+                              "ln": 13,
                               "num": 0.0
                             }
                           },
                           {
                             "Variable": {
                               "col": 34,
-                              "ln": 11,
+                              "ln": 13,
                               "name": "width"
                             }
                           }
@@ -147,24 +179,24 @@
               {
                 "VariableInit": {
                   "col": 9,
-                  "ln": 12,
+                  "ln": 14,
                   "value": {
                     "Expression": {
                       "FunctionCall": {
                         "col": 22,
-                        "ln": 12,
+                        "ln": 14,
                         "params": [
                           {
                             "Number": {
                               "col": 31,
-                              "ln": 12,
+                              "ln": 14,
                               "num": 0.0
                             }
                           },
                           {
                             "Variable": {
                               "col": 34,
-                              "ln": 12,
+                              "ln": 14,
                               "name": "height"
                             }
                           }
@@ -180,32 +212,32 @@
               {
                 "If": {
                   "col": 9,
-                  "ln": 14,
+                  "ln": 16,
                   "eval": {
                     "Arithmetic": {
                       "col": 24,
-                      "ln": 14,
+                      "ln": 16,
                       "operator": {
                         "col": 24,
-                        "ln": 14,
+                        "ln": 16,
                         "operator": "NotEquals"
                       },
                       "a": {
                         "MatrixCall": {
                           "col": 18,
-                          "ln": 14,
+                          "ln": 16,
                           "params": [
                             {
                               "Variable": {
                                 "col": 18,
-                                "ln": 14,
+                                "ln": 16,
                                 "name": "x"
                               }
                             },
                             {
                               "Variable": {
                                 "col": 21,
-                                "ln": 14,
+                                "ln": 16,
                                 "name": "y"
                               }
                             }
@@ -216,7 +248,7 @@
                       "b": {
                         "Number": {
                           "col": 27,
-                          "ln": 14,
+                          "ln": 16,
                           "num": 9.0
                         }
                       }
@@ -227,23 +259,23 @@
                       "Expression": {
                         "Arithmetic": {
                           "col": 26,
-                          "ln": 15,
+                          "ln": 17,
                           "operator": {
                             "col": 26,
-                            "ln": 15,
+                            "ln": 17,
                             "operator": "SubtractAssign"
                           },
                           "a": {
                             "Variable": {
                               "col": 13,
-                              "ln": 15,
+                              "ln": 17,
                               "name": "num_of_mines"
                             }
                           },
                           "b": {
                             "Number": {
                               "col": 29,
-                              "ln": 15,
+                              "ln": 17,
                               "num": 1.0
                             }
                           }
@@ -254,28 +286,28 @@
                       "Expression": {
                         "Arithmetic": {
                           "col": 25,
-                          "ln": 16,
+                          "ln": 18,
                           "operator": {
                             "col": 25,
-                            "ln": 16,
+                            "ln": 18,
                             "operator": "Assign"
                           },
                           "a": {
                             "MatrixCall": {
                               "col": 19,
-                              "ln": 16,
+                              "ln": 18,
                               "params": [
                                 {
                                   "Variable": {
                                     "col": 19,
-                                    "ln": 16,
+                                    "ln": 18,
                                     "name": "x"
                                   }
                                 },
                                 {
                                   "Variable": {
                                     "col": 22,
-                                    "ln": 16,
+                                    "ln": 18,
                                     "name": "y"
                                   }
                                 }
@@ -286,7 +318,7 @@
                           "b": {
                             "Number": {
                               "col": 27,
-                              "ln": 16,
+                              "ln": 18,
                               "num": 9.0
                             }
                           }
@@ -302,12 +334,12 @@
         {
           "VariableInit": {
             "col": 5,
-            "ln": 22,
+            "ln": 24,
             "value": {
               "Expression": {
                 "Number": {
                   "col": 18,
-                  "ln": 22,
+                  "ln": 24,
                   "num": 0.0
                 }
               }
@@ -319,45 +351,27 @@
         {
           "While": {
             "col": 5,
-            "ln": 23,
+            "ln": 25,
             "eval": {
               "Arithmetic": {
-                "col": 20,
-                "ln": 23,
+                "col": 13,
+                "ln": 25,
                 "operator": {
-                  "col": 20,
-                  "ln": 23,
+                  "col": 13,
+                  "ln": 25,
                   "operator": "LessThan"
                 },
                 "a": {
-                  "Arithmetic": {
-                    "col": 14,
-                    "ln": 23,
-                    "operator": {
-                      "col": 14,
-                      "ln": 23,
-                      "operator": "SubtractAssign"
-                    },
-                    "a": {
-                      "Variable": {
-                        "col": 12,
-                        "ln": 23,
-                        "name": "x"
-                      }
-                    },
-                    "b": {
-                      "Number": {
-                        "col": 17,
-                        "ln": 23,
-                        "num": 1.0
-                      }
-                    }
+                  "Variable": {
+                    "col": 11,
+                    "ln": 25,
+                    "name": "x"
                   }
                 },
                 "b": {
                   "Variable": {
-                    "col": 22,
-                    "ln": 23,
+                    "col": 15,
+                    "ln": 25,
                     "name": "width"
                   }
                 }
@@ -367,12 +381,12 @@
               {
                 "VariableInit": {
                   "col": 9,
-                  "ln": 24,
+                  "ln": 26,
                   "value": {
                     "Expression": {
                       "Number": {
                         "col": 22,
-                        "ln": 24,
+                        "ln": 26,
                         "num": 0.0
                       }
                     }
@@ -384,45 +398,27 @@
               {
                 "While": {
                   "col": 9,
-                  "ln": 25,
+                  "ln": 27,
                   "eval": {
                     "Arithmetic": {
-                      "col": 24,
-                      "ln": 25,
+                      "col": 17,
+                      "ln": 27,
                       "operator": {
-                        "col": 24,
-                        "ln": 25,
+                        "col": 17,
+                        "ln": 27,
                         "operator": "LessThan"
                       },
                       "a": {
-                        "Arithmetic": {
-                          "col": 18,
-                          "ln": 25,
-                          "operator": {
-                            "col": 18,
-                            "ln": 25,
-                            "operator": "SubtractAssign"
-                          },
-                          "a": {
-                            "Variable": {
-                              "col": 16,
-                              "ln": 25,
-                              "name": "y"
-                            }
-                          },
-                          "b": {
-                            "Number": {
-                              "col": 21,
-                              "ln": 25,
-                              "num": 1.0
-                            }
-                          }
+                        "Variable": {
+                          "col": 15,
+                          "ln": 27,
+                          "name": "y"
                         }
                       },
                       "b": {
                         "Variable": {
-                          "col": 26,
-                          "ln": 25,
+                          "col": 19,
+                          "ln": 27,
                           "name": "height"
                         }
                       }
@@ -432,32 +428,32 @@
                     {
                       "If": {
                         "col": 13,
-                        "ln": 27,
+                        "ln": 28,
                         "eval": {
                           "Arithmetic": {
                             "col": 28,
-                            "ln": 27,
+                            "ln": 28,
                             "operator": {
                               "col": 28,
-                              "ln": 27,
+                              "ln": 28,
                               "operator": "Equals"
                             },
                             "a": {
                               "MatrixCall": {
                                 "col": 22,
-                                "ln": 27,
+                                "ln": 28,
                                 "params": [
                                   {
                                     "Variable": {
                                       "col": 22,
-                                      "ln": 27,
+                                      "ln": 28,
                                       "name": "x"
                                     }
                                   },
                                   {
                                     "Variable": {
                                       "col": 25,
-                                      "ln": 27,
+                                      "ln": 28,
                                       "name": "y"
                                     }
                                   }
@@ -468,7 +464,7 @@
                             "b": {
                               "Number": {
                                 "col": 31,
-                                "ln": 27,
+                                "ln": 28,
                                 "num": 9.0
                               }
                             }
@@ -476,521 +472,625 @@
                         },
                         "blocks": [
                           {
-                            "VariableInit": {
-                              "col": 17,
-                              "ln": 30,
-                              "value": {
-                                "Expression": {
-                                  "Negate": {
-                                    "col": 34,
-                                    "ln": 30,
-                                    "val": {
-                                      "Number": {
-                                        "col": 35,
-                                        "ln": 30,
-                                        "num": 2.0
-                                      }
+                            "Expression": {
+                              "FunctionCall": {
+                                "col": 17,
+                                "ln": 30,
+                                "params": [
+                                  {
+                                    "Variable": {
+                                      "col": 33,
+                                      "ln": 30,
+                                      "name": "matrix"
+                                    }
+                                  },
+                                  {
+                                    "Variable": {
+                                      "col": 41,
+                                      "ln": 30,
+                                      "name": "x"
+                                    }
+                                  },
+                                  {
+                                    "Variable": {
+                                      "col": 44,
+                                      "ln": 30,
+                                      "name": "y"
                                     }
                                   }
-                                }
-                              },
-                              "tpe": "Number",
-                              "name": "x_dir"
+                                ],
+                                "name": "increase_square"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "Expression": {
+                        "Arithmetic": {
+                          "col": 15,
+                          "ln": 32,
+                          "operator": {
+                            "col": 15,
+                            "ln": 32,
+                            "operator": "AdditionAssign"
+                          },
+                          "a": {
+                            "Variable": {
+                              "col": 13,
+                              "ln": 32,
+                              "name": "y"
                             }
                           },
-                          {
-                            "While": {
-                              "col": 17,
-                              "ln": 31,
-                              "eval": {
-                                "Arithmetic": {
-                                  "col": 36,
-                                  "ln": 31,
-                                  "operator": {
-                                    "col": 36,
-                                    "ln": 31,
-                                    "operator": "LessThanOrEquals"
-                                  },
-                                  "a": {
-                                    "Arithmetic": {
-                                      "col": 30,
-                                      "ln": 31,
-                                      "operator": {
-                                        "col": 30,
-                                        "ln": 31,
-                                        "operator": "AdditionAssign"
-                                      },
-                                      "a": {
-                                        "Variable": {
-                                          "col": 24,
-                                          "ln": 31,
-                                          "name": "x_dir"
-                                        }
-                                      },
-                                      "b": {
-                                        "Number": {
-                                          "col": 33,
-                                          "ln": 31,
-                                          "num": 1.0
-                                        }
-                                      }
-                                    }
-                                  },
-                                  "b": {
-                                    "Number": {
-                                      "col": 39,
-                                      "ln": 31,
-                                      "num": 1.0
-                                    }
-                                  }
-                                }
-                              },
-                              "blocks": [
-                                {
-                                  "VariableInit": {
-                                    "col": 21,
-                                    "ln": 32,
-                                    "value": {
-                                      "Expression": {
-                                        "Negate": {
-                                          "col": 38,
-                                          "ln": 32,
-                                          "val": {
-                                            "Number": {
-                                              "col": 39,
-                                              "ln": 32,
-                                              "num": 2.0
+                          "b": {
+                            "Number": {
+                              "col": 18,
+                              "ln": 32,
+                              "num": 1.0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "Expression": {
+                  "Arithmetic": {
+                    "col": 11,
+                    "ln": 34,
+                    "operator": {
+                      "col": 11,
+                      "ln": 34,
+                      "operator": "AdditionAssign"
+                    },
+                    "a": {
+                      "Variable": {
+                        "col": 9,
+                        "ln": 34,
+                        "name": "x"
+                      }
+                    },
+                    "b": {
+                      "Number": {
+                        "col": 14,
+                        "ln": 34,
+                        "num": 1.0
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Return": {
+            "col": 5,
+            "ln": 37,
+            "eval": null
+          }
+        }
+      ]
+    }
+  },
+  {
+    "Function": {
+      "col": 1,
+      "ln": 40,
+      "ret": "Empty",
+      "params": [],
+      "name": "increase_square",
+      "blocks": [
+        {
+          "VariableInit": {
+            "col": 5,
+            "ln": 41,
+            "value": {
+              "Expression": {
+                "Negate": {
+                  "col": 22,
+                  "ln": 41,
+                  "val": {
+                    "Number": {
+                      "col": 23,
+                      "ln": 41,
+                      "num": 2.0
+                    }
+                  }
+                }
+              }
+            },
+            "tpe": "Number",
+            "name": "x_dir"
+          }
+        },
+        {
+          "While": {
+            "col": 5,
+            "ln": 42,
+            "eval": {
+              "Arithmetic": {
+                "col": 24,
+                "ln": 42,
+                "operator": {
+                  "col": 24,
+                  "ln": 42,
+                  "operator": "LessThanOrEquals"
+                },
+                "a": {
+                  "Arithmetic": {
+                    "col": 18,
+                    "ln": 42,
+                    "operator": {
+                      "col": 18,
+                      "ln": 42,
+                      "operator": "AdditionAssign"
+                    },
+                    "a": {
+                      "Variable": {
+                        "col": 12,
+                        "ln": 42,
+                        "name": "x_dir"
+                      }
+                    },
+                    "b": {
+                      "Number": {
+                        "col": 21,
+                        "ln": 42,
+                        "num": 1.0
+                      }
+                    }
+                  }
+                },
+                "b": {
+                  "Number": {
+                    "col": 27,
+                    "ln": 42,
+                    "num": 1.0
+                  }
+                }
+              }
+            },
+            "blocks": [
+              {
+                "VariableInit": {
+                  "col": 9,
+                  "ln": 43,
+                  "value": {
+                    "Expression": {
+                      "Negate": {
+                        "col": 26,
+                        "ln": 43,
+                        "val": {
+                          "Number": {
+                            "col": 27,
+                            "ln": 43,
+                            "num": 2.0
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "tpe": "Number",
+                  "name": "y_dir"
+                }
+              },
+              {
+                "While": {
+                  "col": 9,
+                  "ln": 44,
+                  "eval": {
+                    "Arithmetic": {
+                      "col": 24,
+                      "ln": 44,
+                      "operator": {
+                        "col": 24,
+                        "ln": 44,
+                        "operator": "LessThanOrEquals"
+                      },
+                      "a": {
+                        "Arithmetic": {
+                          "col": 18,
+                          "ln": 44,
+                          "operator": {
+                            "col": 18,
+                            "ln": 44,
+                            "operator": "AdditionAssign"
+                          },
+                          "a": {
+                            "Variable": {
+                              "col": 16,
+                              "ln": 44,
+                              "name": "y"
+                            }
+                          },
+                          "b": {
+                            "Number": {
+                              "col": 21,
+                              "ln": 44,
+                              "num": 1.0
+                            }
+                          }
+                        }
+                      },
+                      "b": {
+                        "Number": {
+                          "col": 27,
+                          "ln": 44,
+                          "num": 1.0
+                        }
+                      }
+                    }
+                  },
+                  "blocks": [
+                    {
+                      "If": {
+                        "col": 13,
+                        "ln": 45,
+                        "eval": {
+                          "Not": {
+                            "col": 16,
+                            "ln": 45,
+                            "val": {
+                              "Arithmetic": {
+                                "col": 13,
+                                "ln": 49,
+                                "operator": {
+                                  "col": 13,
+                                  "ln": 49,
+                                  "operator": "Or"
+                                },
+                                "a": {
+                                  "Arithmetic": {
+                                    "col": 13,
+                                    "ln": 48,
+                                    "operator": {
+                                      "col": 13,
+                                      "ln": 48,
+                                      "operator": "Or"
+                                    },
+                                    "a": {
+                                      "Arithmetic": {
+                                        "col": 13,
+                                        "ln": 47,
+                                        "operator": {
+                                          "col": 13,
+                                          "ln": 47,
+                                          "operator": "Or"
+                                        },
+                                        "a": {
+                                          "Arithmetic": {
+                                            "col": 13,
+                                            "ln": 46,
+                                            "operator": {
+                                              "col": 13,
+                                              "ln": 46,
+                                              "operator": "Or"
+                                            },
+                                            "a": {
+                                              "Arithmetic": {
+                                                "col": 30,
+                                                "ln": 45,
+                                                "operator": {
+                                                  "col": 30,
+                                                  "ln": 45,
+                                                  "operator": "And"
+                                                },
+                                                "a": {
+                                                  "Arithmetic": {
+                                                    "col": 25,
+                                                    "ln": 45,
+                                                    "operator": {
+                                                      "col": 25,
+                                                      "ln": 45,
+                                                      "operator": "Equals"
+                                                    },
+                                                    "a": {
+                                                      "Variable": {
+                                                        "col": 19,
+                                                        "ln": 45,
+                                                        "name": "x_dir"
+                                                      }
+                                                    },
+                                                    "b": {
+                                                      "Number": {
+                                                        "col": 28,
+                                                        "ln": 45,
+                                                        "num": 0.0
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "b": {
+                                                  "Arithmetic": {
+                                                    "col": 39,
+                                                    "ln": 45,
+                                                    "operator": {
+                                                      "col": 39,
+                                                      "ln": 45,
+                                                      "operator": "Equals"
+                                                    },
+                                                    "a": {
+                                                      "Variable": {
+                                                        "col": 33,
+                                                        "ln": 45,
+                                                        "name": "y_dir"
+                                                      }
+                                                    },
+                                                    "b": {
+                                                      "Number": {
+                                                        "col": 42,
+                                                        "ln": 45,
+                                                        "num": 0.0
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "b": {
+                                              "Arithmetic": {
+                                                "col": 26,
+                                                "ln": 46,
+                                                "operator": {
+                                                  "col": 26,
+                                                  "ln": 46,
+                                                  "operator": "LessThan"
+                                                },
+                                                "a": {
+                                                  "Arithmetic": {
+                                                    "col": 22,
+                                                    "ln": 46,
+                                                    "operator": {
+                                                      "col": 22,
+                                                      "ln": 46,
+                                                      "operator": "Addition"
+                                                    },
+                                                    "a": {
+                                                      "Variable": {
+                                                        "col": 16,
+                                                        "ln": 46,
+                                                        "name": "x_dir"
+                                                      }
+                                                    },
+                                                    "b": {
+                                                      "Variable": {
+                                                        "col": 24,
+                                                        "ln": 46,
+                                                        "name": "x"
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "b": {
+                                                  "Number": {
+                                                    "col": 28,
+                                                    "ln": 46,
+                                                    "num": 0.0
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "b": {
+                                          "Arithmetic": {
+                                            "col": 26,
+                                            "ln": 47,
+                                            "operator": {
+                                              "col": 26,
+                                              "ln": 47,
+                                              "operator": "GreaterThanOrEquals"
+                                            },
+                                            "a": {
+                                              "Arithmetic": {
+                                                "col": 22,
+                                                "ln": 47,
+                                                "operator": {
+                                                  "col": 22,
+                                                  "ln": 47,
+                                                  "operator": "Addition"
+                                                },
+                                                "a": {
+                                                  "Variable": {
+                                                    "col": 16,
+                                                    "ln": 47,
+                                                    "name": "x_dir"
+                                                  }
+                                                },
+                                                "b": {
+                                                  "Variable": {
+                                                    "col": 24,
+                                                    "ln": 47,
+                                                    "name": "x"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "b": {
+                                              "Variable": {
+                                                "col": 29,
+                                                "ln": 47,
+                                                "name": "width"
+                                              }
                                             }
                                           }
                                         }
                                       }
                                     },
-                                    "tpe": "Number",
-                                    "name": "y_dir"
-                                  }
-                                },
-                                {
-                                  "While": {
-                                    "col": 21,
-                                    "ln": 33,
-                                    "eval": {
+                                    "b": {
                                       "Arithmetic": {
-                                        "col": 36,
-                                        "ln": 33,
+                                        "col": 26,
+                                        "ln": 48,
                                         "operator": {
-                                          "col": 36,
-                                          "ln": 33,
-                                          "operator": "LessThanOrEquals"
+                                          "col": 26,
+                                          "ln": 48,
+                                          "operator": "LessThan"
                                         },
                                         "a": {
                                           "Arithmetic": {
-                                            "col": 30,
-                                            "ln": 33,
+                                            "col": 22,
+                                            "ln": 48,
                                             "operator": {
-                                              "col": 30,
-                                              "ln": 33,
-                                              "operator": "AdditionAssign"
+                                              "col": 22,
+                                              "ln": 48,
+                                              "operator": "Addition"
                                             },
                                             "a": {
                                               "Variable": {
-                                                "col": 28,
-                                                "ln": 33,
-                                                "name": "y"
+                                                "col": 16,
+                                                "ln": 48,
+                                                "name": "y_dir"
                                               }
                                             },
                                             "b": {
-                                              "Number": {
-                                                "col": 33,
-                                                "ln": 33,
-                                                "num": 1.0
+                                              "Variable": {
+                                                "col": 24,
+                                                "ln": 48,
+                                                "name": "y"
                                               }
                                             }
                                           }
                                         },
                                         "b": {
                                           "Number": {
-                                            "col": 39,
-                                            "ln": 33,
-                                            "num": 1.0
+                                            "col": 28,
+                                            "ln": 48,
+                                            "num": 0.0
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "b": {
+                                  "Arithmetic": {
+                                    "col": 26,
+                                    "ln": 49,
+                                    "operator": {
+                                      "col": 26,
+                                      "ln": 49,
+                                      "operator": "GreaterThanOrEquals"
+                                    },
+                                    "a": {
+                                      "Arithmetic": {
+                                        "col": 22,
+                                        "ln": 49,
+                                        "operator": {
+                                          "col": 22,
+                                          "ln": 49,
+                                          "operator": "Addition"
+                                        },
+                                        "a": {
+                                          "Variable": {
+                                            "col": 16,
+                                            "ln": 49,
+                                            "name": "y_dir"
+                                          }
+                                        },
+                                        "b": {
+                                          "Variable": {
+                                            "col": 24,
+                                            "ln": 49,
+                                            "name": "y"
                                           }
                                         }
                                       }
                                     },
-                                    "blocks": [
-                                      {
-                                        "If": {
-                                          "col": 25,
-                                          "ln": 35,
-                                          "eval": {
-                                            "Not": {
-                                              "col": 28,
-                                              "ln": 35,
-                                              "val": {
-                                                "Arithmetic": {
-                                                  "col": 29,
-                                                  "ln": 40,
-                                                  "operator": {
-                                                    "col": 29,
-                                                    "ln": 40,
-                                                    "operator": "Or"
-                                                  },
-                                                  "a": {
-                                                    "Arithmetic": {
-                                                      "col": 29,
-                                                      "ln": 39,
-                                                      "operator": {
-                                                        "col": 29,
-                                                        "ln": 39,
-                                                        "operator": "Or"
-                                                      },
-                                                      "a": {
-                                                        "Arithmetic": {
-                                                          "col": 29,
-                                                          "ln": 38,
-                                                          "operator": {
-                                                            "col": 29,
-                                                            "ln": 38,
-                                                            "operator": "Or"
-                                                          },
-                                                          "a": {
-                                                            "Arithmetic": {
-                                                              "col": 29,
-                                                              "ln": 37,
-                                                              "operator": {
-                                                                "col": 29,
-                                                                "ln": 37,
-                                                                "operator": "Or"
-                                                              },
-                                                              "a": {
-                                                                "Arithmetic": {
-                                                                  "col": 41,
-                                                                  "ln": 36,
-                                                                  "operator": {
-                                                                    "col": 41,
-                                                                    "ln": 36,
-                                                                    "operator": "And"
-                                                                  },
-                                                                  "a": {
-                                                                    "Arithmetic": {
-                                                                      "col": 36,
-                                                                      "ln": 36,
-                                                                      "operator": {
-                                                                        "col": 36,
-                                                                        "ln": 36,
-                                                                        "operator": "Equals"
-                                                                      },
-                                                                      "a": {
-                                                                        "Variable": {
-                                                                          "col": 30,
-                                                                          "ln": 36,
-                                                                          "name": "x_dir"
-                                                                        }
-                                                                      },
-                                                                      "b": {
-                                                                        "Number": {
-                                                                          "col": 39,
-                                                                          "ln": 36,
-                                                                          "num": 0.0
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  },
-                                                                  "b": {
-                                                                    "Arithmetic": {
-                                                                      "col": 50,
-                                                                      "ln": 36,
-                                                                      "operator": {
-                                                                        "col": 50,
-                                                                        "ln": 36,
-                                                                        "operator": "Equals"
-                                                                      },
-                                                                      "a": {
-                                                                        "Variable": {
-                                                                          "col": 44,
-                                                                          "ln": 36,
-                                                                          "name": "y_dir"
-                                                                        }
-                                                                      },
-                                                                      "b": {
-                                                                        "Number": {
-                                                                          "col": 53,
-                                                                          "ln": 36,
-                                                                          "num": 0.0
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              },
-                                                              "b": {
-                                                                "Arithmetic": {
-                                                                  "col": 42,
-                                                                  "ln": 37,
-                                                                  "operator": {
-                                                                    "col": 42,
-                                                                    "ln": 37,
-                                                                    "operator": "LessThan"
-                                                                  },
-                                                                  "a": {
-                                                                    "Arithmetic": {
-                                                                      "col": 38,
-                                                                      "ln": 37,
-                                                                      "operator": {
-                                                                        "col": 38,
-                                                                        "ln": 37,
-                                                                        "operator": "Addition"
-                                                                      },
-                                                                      "a": {
-                                                                        "Variable": {
-                                                                          "col": 32,
-                                                                          "ln": 37,
-                                                                          "name": "x_dir"
-                                                                        }
-                                                                      },
-                                                                      "b": {
-                                                                        "Variable": {
-                                                                          "col": 40,
-                                                                          "ln": 37,
-                                                                          "name": "x"
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  },
-                                                                  "b": {
-                                                                    "Number": {
-                                                                      "col": 44,
-                                                                      "ln": 37,
-                                                                      "num": 0.0
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          },
-                                                          "b": {
-                                                            "Arithmetic": {
-                                                              "col": 42,
-                                                              "ln": 38,
-                                                              "operator": {
-                                                                "col": 42,
-                                                                "ln": 38,
-                                                                "operator": "GreaterThanOrEquals"
-                                                              },
-                                                              "a": {
-                                                                "Arithmetic": {
-                                                                  "col": 38,
-                                                                  "ln": 38,
-                                                                  "operator": {
-                                                                    "col": 38,
-                                                                    "ln": 38,
-                                                                    "operator": "Addition"
-                                                                  },
-                                                                  "a": {
-                                                                    "Variable": {
-                                                                      "col": 32,
-                                                                      "ln": 38,
-                                                                      "name": "x_dir"
-                                                                    }
-                                                                  },
-                                                                  "b": {
-                                                                    "Variable": {
-                                                                      "col": 40,
-                                                                      "ln": 38,
-                                                                      "name": "x"
-                                                                    }
-                                                                  }
-                                                                }
-                                                              },
-                                                              "b": {
-                                                                "Variable": {
-                                                                  "col": 45,
-                                                                  "ln": 38,
-                                                                  "name": "width"
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      },
-                                                      "b": {
-                                                        "Arithmetic": {
-                                                          "col": 42,
-                                                          "ln": 39,
-                                                          "operator": {
-                                                            "col": 42,
-                                                            "ln": 39,
-                                                            "operator": "LessThan"
-                                                          },
-                                                          "a": {
-                                                            "Arithmetic": {
-                                                              "col": 38,
-                                                              "ln": 39,
-                                                              "operator": {
-                                                                "col": 38,
-                                                                "ln": 39,
-                                                                "operator": "Addition"
-                                                              },
-                                                              "a": {
-                                                                "Variable": {
-                                                                  "col": 32,
-                                                                  "ln": 39,
-                                                                  "name": "y_dir"
-                                                                }
-                                                              },
-                                                              "b": {
-                                                                "Variable": {
-                                                                  "col": 40,
-                                                                  "ln": 39,
-                                                                  "name": "y"
-                                                                }
-                                                              }
-                                                            }
-                                                          },
-                                                          "b": {
-                                                            "Number": {
-                                                              "col": 44,
-                                                              "ln": 39,
-                                                              "num": 0.0
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  },
-                                                  "b": {
-                                                    "Arithmetic": {
-                                                      "col": 42,
-                                                      "ln": 40,
-                                                      "operator": {
-                                                        "col": 42,
-                                                        "ln": 40,
-                                                        "operator": "GreaterThanOrEquals"
-                                                      },
-                                                      "a": {
-                                                        "Arithmetic": {
-                                                          "col": 38,
-                                                          "ln": 40,
-                                                          "operator": {
-                                                            "col": 38,
-                                                            "ln": 40,
-                                                            "operator": "Addition"
-                                                          },
-                                                          "a": {
-                                                            "Variable": {
-                                                              "col": 32,
-                                                              "ln": 40,
-                                                              "name": "y_dir"
-                                                            }
-                                                          },
-                                                          "b": {
-                                                            "Variable": {
-                                                              "col": 40,
-                                                              "ln": 40,
-                                                              "name": "y"
-                                                            }
-                                                          }
-                                                        }
-                                                      },
-                                                      "b": {
-                                                        "Variable": {
-                                                          "col": 45,
-                                                          "ln": 40,
-                                                          "name": "height"
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          },
-                                          "blocks": [
-                                            {
-                                              "Expression": {
-                                                "Arithmetic": {
-                                                  "col": 57,
-                                                  "ln": 42,
-                                                  "operator": {
-                                                    "col": 57,
-                                                    "ln": 42,
-                                                    "operator": "AdditionAssign"
-                                                  },
-                                                  "a": {
-                                                    "MatrixCall": {
-                                                      "col": 35,
-                                                      "ln": 42,
-                                                      "params": [
-                                                        {
-                                                          "Arithmetic": {
-                                                            "col": 37,
-                                                            "ln": 42,
-                                                            "operator": {
-                                                              "col": 37,
-                                                              "ln": 42,
-                                                              "operator": "Addition"
-                                                            },
-                                                            "a": {
-                                                              "Variable": {
-                                                                "col": 35,
-                                                                "ln": 42,
-                                                                "name": "x"
-                                                              }
-                                                            },
-                                                            "b": {
-                                                              "Variable": {
-                                                                "col": 39,
-                                                                "ln": 42,
-                                                                "name": "x_dir"
-                                                              }
-                                                            }
-                                                          }
-                                                        },
-                                                        {
-                                                          "Arithmetic": {
-                                                            "col": 48,
-                                                            "ln": 42,
-                                                            "operator": {
-                                                              "col": 48,
-                                                              "ln": 42,
-                                                              "operator": "Addition"
-                                                            },
-                                                            "a": {
-                                                              "Variable": {
-                                                                "col": 46,
-                                                                "ln": 42,
-                                                                "name": "y"
-                                                              }
-                                                            },
-                                                            "b": {
-                                                              "Variable": {
-                                                                "col": 50,
-                                                                "ln": 42,
-                                                                "name": "y_dir"
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      ],
-                                                      "name": "mines"
-                                                    }
-                                                  },
-                                                  "b": {
-                                                    "Number": {
-                                                      "col": 60,
-                                                      "ln": 42,
-                                                      "num": 1.0
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          ]
-                                        }
+                                    "b": {
+                                      "Variable": {
+                                        "col": 29,
+                                        "ln": 49,
+                                        "name": "height"
                                       }
-                                    ]
+                                    }
                                   }
                                 }
-                              ]
+                              }
+                            }
+                          }
+                        },
+                        "blocks": [
+                          {
+                            "Expression": {
+                              "Arithmetic": {
+                                "col": 45,
+                                "ln": 50,
+                                "operator": {
+                                  "col": 45,
+                                  "ln": 50,
+                                  "operator": "AdditionAssign"
+                                },
+                                "a": {
+                                  "MatrixCall": {
+                                    "col": 23,
+                                    "ln": 50,
+                                    "params": [
+                                      {
+                                        "Arithmetic": {
+                                          "col": 25,
+                                          "ln": 50,
+                                          "operator": {
+                                            "col": 25,
+                                            "ln": 50,
+                                            "operator": "Addition"
+                                          },
+                                          "a": {
+                                            "Variable": {
+                                              "col": 23,
+                                              "ln": 50,
+                                              "name": "x"
+                                            }
+                                          },
+                                          "b": {
+                                            "Variable": {
+                                              "col": 27,
+                                              "ln": 50,
+                                              "name": "x_dir"
+                                            }
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "Arithmetic": {
+                                          "col": 36,
+                                          "ln": 50,
+                                          "operator": {
+                                            "col": 36,
+                                            "ln": 50,
+                                            "operator": "Addition"
+                                          },
+                                          "a": {
+                                            "Variable": {
+                                              "col": 34,
+                                              "ln": 50,
+                                              "name": "y"
+                                            }
+                                          },
+                                          "b": {
+                                            "Variable": {
+                                              "col": 38,
+                                              "ln": 50,
+                                              "name": "y_dir"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    ],
+                                    "name": "mines"
+                                  }
+                                },
+                                "b": {
+                                  "Number": {
+                                    "col": 48,
+                                    "ln": 50,
+                                    "num": 1.0
+                                  }
+                                }
+                              }
                             }
                           }
                         ]
@@ -1000,19 +1100,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "Return": {
-            "col": 5,
-            "ln": 53,
-            "eval": {
-              "Variable": {
-                "col": 9,
-                "ln": 53,
-                "name": "matrix"
-              }
-            }
           }
         }
       ]

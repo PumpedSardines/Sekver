@@ -176,6 +176,7 @@ fn eval_combo_blocks(tokens: &[InterExpr]) -> Result<Expression, ParsingError> {
             ArithmeticOperators::Multiplication,
             ArithmeticOperators::Division,
         ],
+        &[ArithmeticOperators::Power],
         &[ArithmeticOperators::Not],
     ];
 
@@ -408,6 +409,11 @@ fn eval_unknown_token(token: &Token) -> Result<InterExpr, ParsingError> {
             col: token.col,
             ln: token.ln,
             operator: ArithmeticOperators::Division,
+        })),
+        TokenKey::Power => Ok(InterExpr::ArithmeticOperator(ArithmeticOperator {
+            col: token.col,
+            ln: token.ln,
+            operator: ArithmeticOperators::Power,
         })),
         TokenKey::Assign => Ok(InterExpr::ArithmeticOperator(ArithmeticOperator {
             col: token.col,

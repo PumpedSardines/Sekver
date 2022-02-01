@@ -6,7 +6,7 @@ pub fn tokenize(code: &str) -> Result<Vec<Token>, String> {
     let mut tokens: Vec<Token> = vec![];
 
     let special_char_combos = [
-        "===", "!==", "+=", "-=", "==", "!=", ">=", "<=", "&&", "//", "||", "(", ")", "[", "]",
+        "===", "!==", "+=", "-=", "==", "!=", ">=", "<=", "&&", "//", "**", "||", "(", ")", "[", "]",
         "{", "}", ";", ":", ",", "+", "-", "*", "/", "=", ">", "<", "!",
     ];
 
@@ -203,6 +203,12 @@ fn get_token(raw: &str, ln: usize, col: usize) -> Token {
             col,
             raw: None,
             key: TokenKey::Addition,
+        },
+        "**" => Token {
+            ln,
+            col,
+            raw: None,
+            key: TokenKey::Power,
         },
         "-" => Token {
             ln,

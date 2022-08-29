@@ -1,7 +1,0 @@
-imp std frm "std";
-
-exp cst test: num = (3 + 4 + 3);
-
-exp fnc test() {
-    print(4 + 3, test());
-}

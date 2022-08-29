@@ -1,0 +1,17 @@
+{
+  "folders": [
+	{
+		"name": "compiler",
+		"path": "../compiler"
+	},
+	{
+		"name": "vscode-extension",
+		"path": "../vscode-extension"
+	},
+	{
+		"name": "Sekver",
+		"path": ".."
+	}
+],
+  "settings": {}
+}

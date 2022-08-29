@@ -87,7 +87,7 @@ pub enum ArithmeticOperators {
 pub struct ArithmeticOperator {
     pub col: usize,
     pub ln: usize,
-    pub operator: ArithmeticOperators
+    pub operator: ArithmeticOperators,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -118,14 +118,14 @@ pub struct Arithmetic {
 pub struct Not {
     pub col: usize,
     pub ln: usize,
-    pub val: Box<Expression>, 
+    pub val: Box<Expression>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Negate {
     pub col: usize,
     pub ln: usize,
-    pub val: Box<Expression>, 
+    pub val: Box<Expression>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -162,7 +162,7 @@ pub struct If {
 pub enum VariableInitValues {
     Expression(Expression),
     MatrixInit(MatrixInit),
-    ListInit(ListInit)
+    ListInit(ListInit),
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -170,6 +170,16 @@ pub struct VariableInit {
     pub col: usize,
     pub ln: usize,
     pub value: VariableInitValues,
+    pub tpe: Types,
+    pub name: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ConstantInit {
+    pub col: usize,
+    pub ln: usize,
+    pub exp: bool,
+    pub value: Expression,
     pub tpe: Types,
     pub name: String,
 }
@@ -186,7 +196,7 @@ pub struct VariableSet {
 pub struct Return {
     pub col: usize,
     pub ln: usize,
-    pub eval: Option<Expression>
+    pub eval: Option<Expression>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -204,14 +214,25 @@ pub struct Function {
     pub col: usize,
     pub ln: usize,
     pub ret: Types,
+    pub exp: bool,
     pub params: Vec<Types>,
     pub name: String,
     pub blocks: Vec<Block>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+pub struct Import {
+    pub col: usize,
+    pub ln: usize,
+    pub namespace: String,
+    pub from: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub enum GlobalBlock {
     Function(Function),
+    Import(Import),
+    ConstantInit(ConstantInit),
 }
 
 pub struct ParsingError {
@@ -225,7 +246,7 @@ impl ParsingError {
         return ParsingError {
             col: token.col,
             ln: token.ln,
-            reason
+            reason,
         };
     }
 }

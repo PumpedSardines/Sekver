@@ -6,8 +6,8 @@ pub fn tokenize(code: &str) -> Result<Vec<Token>, String> {
     let mut tokens: Vec<Token> = vec![];
 
     let special_char_combos = [
-        "===", "!==", "+=", "-=", "==", "!=", ">=", "<=", "&&", "//", "**", "||", "(", ")", "[", "]",
-        "{", "}", ";", ":", ",", "+", "-", "*", "/", "=", ">", "<", "!",
+        "===", "!==", "+=", "-=", "==", "!=", ">=", "::", "<=", "&&", "//", "**", "||", "(", ")",
+        "[", "]", "{", "}", ";", ":", ",", "+", "-", "*", "/", "=", ">", "<", "!",
     ];
 
     let lines = code.split('\n');
@@ -258,6 +258,12 @@ fn get_token(raw: &str, ln: usize, col: usize) -> Token {
             raw: None,
             key: TokenKey::NotEquals,
         },
+        "::" => Token {
+            ln,
+            col,
+            raw: None,
+            key: TokenKey::DoubleColon,
+        },
         ">" => Token {
             ln,
             col,
@@ -300,13 +306,13 @@ fn get_token(raw: &str, ln: usize, col: usize) -> Token {
             raw: None,
             key: TokenKey::Not,
         },
-        "func" => Token {
+        "fnc" => Token {
             ln,
             col,
             raw: None,
             key: TokenKey::Function,
         },
-        "mixn" => Token {
+        "mxn" => Token {
             ln,
             col,
             raw: None,
@@ -318,7 +324,7 @@ fn get_token(raw: &str, ln: usize, col: usize) -> Token {
             raw: None,
             key: TokenKey::Variable,
         },
-        "const" => Token {
+        "cst" => Token {
             ln,
             col,
             raw: None,
@@ -329,6 +335,24 @@ fn get_token(raw: &str, ln: usize, col: usize) -> Token {
             col,
             raw: None,
             key: TokenKey::While,
+        },
+        "imp" => Token {
+            ln,
+            col,
+            raw: None,
+            key: TokenKey::Import,
+        },
+        "frm" => Token {
+            ln,
+            col,
+            raw: None,
+            key: TokenKey::From,
+        },
+        "exp" => Token {
+            ln,
+            col,
+            raw: None,
+            key: TokenKey::Export,
         },
         "if" => Token {
             ln,

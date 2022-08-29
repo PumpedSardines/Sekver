@@ -1,4 +1,6 @@
-#[derive(Debug, PartialEq, Clone, Copy)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone, Copy)]
 pub enum TokenKey {
     // Keywords
     Return,
@@ -10,6 +12,9 @@ pub enum TokenKey {
     Mixin,
     Variable,
     Constant,
+    Import,
+    From,
+    Export,
 
     // Generic
     ParentheseLeft,
@@ -18,6 +23,7 @@ pub enum TokenKey {
     BracketLeft,
     CurlyBraceRight,
     CurlyBraceLeft,
+    DoubleColon,
     SemiColon,
     Colon,
     Comma,
@@ -47,10 +53,10 @@ pub enum TokenKey {
     Keyword,
 }
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct Token {
     pub key: TokenKey,
     pub ln: usize,
     pub col: usize,
-    pub raw: Option<String>
+    pub raw: Option<String>,
 }

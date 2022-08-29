@@ -1,261 +1,329 @@
 {
-    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-    "name": "Sekver",
-    "patterns": [{ "include": "#global" }, { "include": "#func" }],
-    "repository": {
-        "global": {
-            "patterns": [{ "include": "#comment" }]
-        },
-        "comment": {
-            "match": "//[^\\n]*",
-            "name": "punctuation.definition.comment.sekver"
-        },
-        "func": {
-            "patterns": [
-                { "include": "#func-body" },
-                { "include": "#func-init" }
-            ]
-        },
-        "func-init": {
-            "begin": "(func) +([A-Za-z_]+)? *(\\()?",
-            "beginCaptures": {
-                "1": {
-                    "name": "storage.type.function.sekver"
-                },
-                "2": {
-                    "name": "entity.name.function.sekver"
-                },
-                "3": {
-                    "name": "punctuation.definition.parameters.begin.sekver"
-                }
-            },
-            "end": "(\\)) *(:)? *(num|str|bln|mtx|lst|emp)?",
-            "endCaptures": {
-                "1": {
-                    "name": "punctuation.definition.parameters.end.sekver"
-                },
-                "2": {
-                    "name": "keyword.operator.type.annotation"
-                },
-                "3": {
-                    "name": "support.type.primitive.sekver"
-                }
-            },
-            "patterns": [{ "include": "#func-params" }]
-        },
-        "func-params": {
-            "patterns": [
-                {
-                    "match": "num|str|bln|mtx|lst|emp",
-                    "name": "support.type.primitive.sekver"
-                },
-                {
-                    "match": ":",
-                    "name": "keyword.operator.type.annotation"
-                },
-                {
-                    "name": "variable.parameter",
-                    "match": "[A-Za-z_]+"
-                }
-            ]
-        },
-        "func-body": {
-            "begin": "({)",
-            "beginCaptures": {
-                "1": {
-                    "name": "punctuation.definition.block"
-                }
-            },
-            "end": "(})",
-            "endCaptures": {
-                "1": {
-                    "name": "punctuation.definition.block"
-                }
-            },
-            "patterns": [{ "include": "#body" }]
-        },
-        "body": {
-            "patterns": [
-                { "include": "#comment" },
-                { "include": "#block" },
-                { "include": "#return" },
-                { "include": "#loops" },
-                { "include": "#conditional" },
-                { "include": "#var-init" },
-                { "include": "#expression" }
-            ]
-        },
-        "block": {
-            "begin": "({)",
-            "beginCaptures": {
-                "1": {
-                    "name": "punctuation.definition.block"
-                }
-            },
-            "end": "(})",
-            "endCaptures": {
-                "1": {
-                    "name": "punctuation.definition.block"
-                }
-            },
-            "patterns": [{ "include": "#body" }]
-        },
-        "loops": {
-            "match": "while +",
-            "name": "keyword.control.loop"
-        },
-        "conditional": {
-            "match": "if +",
-            "name": "keyword.control.conditional"
-        },
-        "return": {
-            "patterns": [
-                {
-                    "match": "(ret) *(;)",
-                    "captures": {
-                        "1": {
-                            "name":"keyword.control.flow"
-                        },
-                        "2": {
-                            "name":"punctuation.terminator.statement"
-                        }
-                    }
-                },
-                {
-                    "begin": "(ret) +",
-                    "beginCaptures": {
-                        "1": {
-                            "name": "keyword.control.flow"
-                        }
-                    },
-                    "end": "(;)",
-                    "endCaptures": {
-                        "1": {
-                            "name": "punctuation.terminator.statement"
-                        }
-                    },
-                    "patterns": [{ "include": "#body" }]
-                }
-            ]
-        },
-        "var-init": {
-            "begin": "(var) +([A-Za-z_]+)? *(:)? *(num|str|bln|mtx|lst|emp)? *((=)|(\\+=|-=))?",
-            "beginCaptures": {
-                "1": {
-                    "name": "storage.type"
-                },
-                "2": {
-                    "name": "entity.name.function.sekver"
-                },
-                "3": {
-                    "name": "keyword.operator.type.annotation"
-                },
-                "4": {
-                    "name": "support.type.primitive.sekver"
-                },
-                "6": {
-                    "name": "keyword.operator.assignment"
-                },
-                "7": {
-                    "name": "invalid"
-                }
-            },
-            "end": "(;)",
-            "endCaptures": {
-                "1": {
-                    "name": "punctuation.terminator.statement"
-                }
-            },
-            "patterns": [{ "include": "#expression" }]
-        },
-        "expression": {
-            "patterns": [
-                {
-                    "begin": "\"",
-                    "beginCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.string.begin"
-                        }
-                    },
-                    "end": "(?<!\\\\)\"",
-                    "endCaptures": {
-                        "0": {
-                            "name": "punctuation.definition.string.end"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "match": "\\\\.",
-                            "name": "constant.character.escape"
-                        },
-                        {
-                            "match": ".",
-                            "name": "string.quoted.double"
-                        }
-                    ]
-                },
-                {
-                    "match": ",",
-                    "name": "punctuation.separator.comma"
-                },
-                {
-                    "match": "\\(|\\)",
-                    "name": "meta.brace.round"
-                },
-                {
-                    "match": "\\[|\\]",
-                    "name": "meta.brace.square"
-                },
-                {
-                    "match": "true",
-                    "name": "constant.language.boolean.true"
-                },
-                {
-                    "match": "false",
-                    "name": "constant.language.boolean.false"
-                },
-                {
-                    "match": "\\+|-|\\*|/",
-                    "name": "keyword.operator.arithmetic"
-                },
-                {
-                    "match": ">=|<=|>|<",
-                    "name": "keyword.operator.relational"
-                },
-                {
-                    "match": "==|!=",
-                    "name": "keyword.operator.comparison"
-                },
-                {
-                    "match": "!|&&|\\|\\|",
-                    "name": "keyword.operator.logical"
-                },
-                {
-                    "match": "[A-Za-z_]+(?=\\()",
-                    "name": "entity.name.function"
-                },
-                {
-                    "match": "[0-9]*\\.?[0-9]+",
-                    "name": "constant.numeric.decimal"
-                },
-                {
-                    "match": "[A-Za-z_]+",
-                    "name": "variable.other.readwrite"
-                },
-                {
-                    "match": "(\\+|-)=",
-                    "name": "keyword.operator.assignment.compound"
-                },
-                {
-                    "match": "=",
-                    "name": "keyword.operator.assignment"
-                },
-                {
-                    "match": ";",
-                    "name": "punctuation.terminator.statement"
-                }
-            ]
-        }
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Sekver",
+  "patterns": [
+    { "include": "#global" },
+    { "include": "#func" },
+    { "include": "#cst-init" },
+    { "include": "#import" }
+  ],
+  "repository": {
+    "global": {
+      "patterns": [{ "include": "#comment" }]
     },
-    "scopeName": "source.sekver"
+    "comment": {
+      "match": "//[^\\n]*",
+      "name": "punctuation.definition.comment.sekver"
+    },
+    "func": {
+      "patterns": [{ "include": "#func-body" }, { "include": "#func-init" }]
+    },
+    "import": {
+      "begin": "(imp)(?: +)?([A-Za-z_]+)?(?: +)?(frm)? *",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.import.sekver"
+        },
+        "2": {
+          "name": "variable.other.readwrite.alias.sekver"
+        },
+        "3": {
+          "name": "keyword.control.from.sekver"
+        }
+      },
+      "end": "(;)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.terminator.statement.sekver"
+        }
+      },
+      "patterns": [{ "include": "#string" }]
+    },
+    "func-init": {
+      "begin": "(exp +)?(fnc)(?: +)?([A-Za-z_]+)? *(\\()?",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.export"
+        },
+        "2": {
+          "name": "storage.type.function.sekver"
+        },
+        "3": {
+          "name": "entity.name.function.sekver"
+        },
+        "4": {
+          "name": "punctuation.definition.parameters.begin.sekver"
+        }
+      },
+      "end": "(\\)) *(:)? *(num|str|bln|mtx|lst|emp)?",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.parameters.end.sekver"
+        },
+        "2": {
+          "name": "keyword.operator.type.annotation"
+        },
+        "3": {
+          "name": "support.type.primitive.sekver"
+        }
+      },
+      "patterns": [{ "include": "#func-params" }]
+    },
+    "func-params": {
+      "patterns": [
+        {
+          "match": "num|str|bln|mtx|lst|emp",
+          "name": "support.type.primitive.sekver"
+        },
+        {
+          "match": ":",
+          "name": "keyword.operator.type.annotation"
+        },
+        {
+          "name": "variable.parameter",
+          "match": "[A-Za-z_]+"
+        }
+      ]
+    },
+    "func-body": {
+      "begin": "({)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.block"
+        }
+      },
+      "end": "(})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.block"
+        }
+      },
+      "patterns": [{ "include": "#body" }]
+    },
+    "body": {
+      "patterns": [
+        { "include": "#comment" },
+        { "include": "#block" },
+        { "include": "#return" },
+        { "include": "#loops" },
+        { "include": "#conditional" },
+        { "include": "#var-init" },
+        { "include": "#expression" }
+      ]
+    },
+    "block": {
+      "begin": "({)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.block"
+        }
+      },
+      "end": "(})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.block"
+        }
+      },
+      "patterns": [{ "include": "#body" }]
+    },
+    "loops": {
+      "match": "while +",
+      "name": "keyword.control.loop"
+    },
+    "conditional": {
+      "match": "if +",
+      "name": "keyword.control.conditional"
+    },
+    "return": {
+      "patterns": [
+        {
+          "match": "(ret) *(;)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.flow"
+            },
+            "2": {
+              "name": "punctuation.terminator.statement"
+            }
+          }
+        },
+        {
+          "begin": "(ret) +",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.flow"
+            }
+          },
+          "end": "(;)",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.terminator.statement"
+            }
+          },
+          "patterns": [{ "include": "#body" }]
+        }
+      ]
+    },
+    "cst-init": {
+      "begin": "(exp +)?(cst) +([A-Za-z_]+)? *(:)? *(num|str|bln|mtx|lst|emp)? *((=)|(\\+=|-=))?",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.export"
+        },
+        "2": {
+          "name": "storage.type"
+        },
+        "3": {
+          "name": "entity.name.function.sekver"
+        },
+        "4": {
+          "name": "keyword.operator.type.annotation"
+        },
+        "5": {
+          "name": "support.type.primitive.sekver"
+        },
+        "7": {
+          "name": "keyword.operator.assignment"
+        },
+        "8": {
+          "name": "invalid"
+        }
+      },
+      "end": "(;)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.terminator.statement"
+        }
+      },
+      "patterns": [{ "include": "#expression" }]
+    },
+    "var-init": {
+      "begin": "(var) +([A-Za-z_]+)? *(:)? *(num|str|bln|mtx|lst|emp)? *((=)|(\\+=|-=))?",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type"
+        },
+        "2": {
+          "name": "entity.name.function.sekver"
+        },
+        "3": {
+          "name": "keyword.operator.type.annotation"
+        },
+        "4": {
+          "name": "support.type.primitive.sekver"
+        },
+        "6": {
+          "name": "keyword.operator.assignment"
+        },
+        "7": {
+          "name": "invalid"
+        }
+      },
+      "end": "(;)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.terminator.statement"
+        }
+      },
+      "patterns": [{ "include": "#expression" }]
+    },
+    "string": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin"
+        }
+      },
+      "end": "(?<!\\\\)\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\\\.",
+          "name": "constant.character.escape"
+        },
+        {
+          "match": ".",
+          "name": "string.quoted.double"
+        }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        { "include": "#string" },
+        {
+          "match": ",",
+          "name": "punctuation.separator.comma"
+        },
+        {
+          "match": "\\(|\\)",
+          "name": "meta.brace.round"
+        },
+        {
+          "match": "\\[|\\]",
+          "name": "meta.brace.square"
+        },
+        {
+          "match": "true",
+          "name": "constant.language.boolean.true"
+        },
+        {
+          "match": "false",
+          "name": "constant.language.boolean.false"
+        },
+        {
+          "match": "\\+|-|\\*|/",
+          "name": "keyword.operator.arithmetic"
+        },
+        {
+          "match": ">=|<=|>|<",
+          "name": "keyword.operator.relational"
+        },
+        {
+          "match": "==|!=",
+          "name": "keyword.operator.comparison"
+        },
+        {
+          "match": "!|&&|\\|\\|",
+          "name": "keyword.operator.logical"
+        },
+        {
+          "match": "[A-Za-z_]+(?=::)",
+          "name": "entity.name.namespace.sekver"
+        },
+        {
+          "match": "::",
+          "name": "keyword.operator.namespace.sekver"
+        },
+        {
+          "match": "[A-Za-z_]+(?=\\()",
+          "name": "entity.name.function"
+        },
+        {
+          "match": "[0-9]*\\.?[0-9]+",
+          "name": "constant.numeric.decimal"
+        },
+        {
+          "match": "[A-Za-z_]+",
+          "name": "variable.other.readwrite"
+        },
+        {
+          "match": "(\\+|-)=",
+          "name": "keyword.operator.assignment.compound"
+        },
+        {
+          "match": "=",
+          "name": "keyword.operator.assignment"
+        },
+        {
+          "match": ";",
+          "name": "punctuation.terminator.statement"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.sekver"
 }

@@ -7,7 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
       document: vscode.TextDocument
     ): vscode.TextEdit[] {
       const editorConfig = vscode.workspace.getConfiguration("editor");
-      const tabSize = editorConfig.get("tab\Size", 4);
+      const tabSize = editorConfig.get("tabSize", 4);
 
       const edits: vscode.TextEdit[] = [];
       let bracket = 0;
@@ -31,7 +31,9 @@ export function activate(context: vscode.ExtensionContext) {
           vscode.TextEdit.delete(deleteRange),
           vscode.TextEdit.insert(
             line.range.start,
-            String(" ").repeat(tabSize as number).repeat(bracket)
+            String(" ")
+              .repeat(tabSize as number)
+              .repeat(bracket)
           )
         );
 
